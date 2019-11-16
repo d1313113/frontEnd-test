@@ -1,0 +1,19 @@
+{
+  "name": "frontend-test",
+  "version": "0.0.1",
+  "description": "forntend test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d1313113/frontEnd-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/d1313113/frontEnd-test/issues"
+  },
+  "homepage": "https://github.com/d1313113/frontEnd-test#readme"
+}
