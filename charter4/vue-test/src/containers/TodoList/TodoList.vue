@@ -1,7 +1,7 @@
 <template>
   <div class="todolist">
     <h1>TodoList</h1>
-    <Header/>
+    <Header @add="addUndoItem"/>
   </div>
 </template>
 
@@ -12,6 +12,16 @@ export default {
   name: 'TodoList',
   components: {
     Header
+  },
+  data () {
+    return {
+      undoList: []
+    }
+  },
+  methods: {
+    addUndoItem (item) {
+      this.undoList.push(item)
+    }
   }
 }
 </script>
