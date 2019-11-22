@@ -1,12 +1,18 @@
 <template>
-  <div class="hello">
+  <div class="todolist">
     <h1>TodoList</h1>
+    <Header/>
   </div>
 </template>
 
 <script>
+import Header from './components/Header'
+
 export default {
-  name: 'TodoList'
+  name: 'TodoList',
+  components: {
+    Header
+  }
 }
 </script>
 
