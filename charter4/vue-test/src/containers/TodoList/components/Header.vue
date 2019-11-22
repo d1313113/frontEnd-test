@@ -1,7 +1,8 @@
 <template>
   <div class="header">
-    <h1>TodoList</h1>
-    <input type="text" data-test="input" v-model="inputValue" @keyup.enter="addTodoItem">
+    <div class="header-content">
+      <input type="text" data-test="input" v-model="inputValue" @keyup.enter="addTodoItem">
+    </div>
   </div>
 </template>
 
@@ -26,4 +27,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
+.header
+  background-color #666
+  line-height 60px
+  .header-content
+    width 600px
+    margin 0 auto
+    color #fff
+    font-size 24px
 </style>
