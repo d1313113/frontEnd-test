@@ -32,7 +32,11 @@ describe('UndoList.vue', () => {
   it('UndoList 删除按钮点击时,向外触发删除时间', () => {
     const wrapper = shallowMount(UndoList, {
       propsData: {
-        list: [1, 2, 3]
+        list: [
+          { status: 'div', value: 1 },
+          { status: 'div', value: 2 },
+          { status: 'div', value: 3 }
+        ]
       }
     });
     const deleteBtn = findTestWrapper(wrapper, 'delete-btn').at(1);

@@ -7,11 +7,11 @@
     <ul class="list">
       <li
         v-for="(item, index) in list"
-        :key="item"
+        :key="index"
         data-test="item"
         class="item"
       >
-        {{ item }}
+        {{ item.value }}
         <span data-test="delete-btn" @click="handleDelete(index)" class="delete">-</span>
       </li>
     </ul>
