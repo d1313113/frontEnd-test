@@ -10,8 +10,15 @@
         :key="index"
         data-test="item"
         class="item"
+        @click="changeStatus(index)"
       >
-        {{ item.value }}
+        <input
+          v-if="item.status === 'input'"
+          data-test="input"
+          :value="item.value"
+          @blur="handleInputBlur(index)"
+          @change="(e) => {handleInputChange(e, index)}"/>
+        <span v-else>{{ item.value }}</span>
         <span data-test="delete-btn" @click="handleDelete(index)" class="delete">-</span>
       </li>
     </ul>
@@ -25,6 +32,18 @@ export default {
   methods: {
     handleDelete (index) {
       this.$emit('delete', index)
+    },
+    changeStatus (index) {
+      this.$emit('status', index)
+    },
+    handleInputBlur () {
+      this.$emit('reset')
+    },
+    handleInputChange (e, index) {
+      this.$emit('change', {
+        value: e.target.value,
+        index
+      })
     }
   }
 }
