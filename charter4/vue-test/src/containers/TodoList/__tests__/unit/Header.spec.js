@@ -39,10 +39,10 @@ describe('Header.vue', () => {
 
   it('Header 中 input 回车,有内容,触发 add 事件,并清空 inputValue', () => {
     const wrapper = shallowMount(Header);
-    const input = findTestWrapper(wrapper, 'input');
+    const input = findTestWrapper(wrapper, 'input').at(0);
     input.setValue('aaaa');
     input.trigger('keyup.enter');
     expect(wrapper.emitted().add).toBeTruthy();
-    expect(wrapper.vm.$data.inputValue).toBe('');
+    expect(wrapper.vm.inputValue).toBe('');
   });
 });

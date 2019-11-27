@@ -110,7 +110,7 @@ describe('TodoList.vue', () => {
       index: 1,
       value: "444"
     });
-    expect(wrapper.vm.$data.undoList).toEqual([
+    expect(wrapper.vm.undoList).toEqual([
       { status: 'div', value: 1 },
       { status: 'input', value: "444" },
       { status: 'div', value: 3 }
