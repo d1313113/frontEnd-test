@@ -8,5 +8,6 @@ module.exports = {
   //   '^@/(.*)$': '<rootDir>/src/$1'
   // },
   testMatch: ['**/__tests__/**/*.spec.js'],
-  // transformIgnorePatterns: ['/node_modules/']
+  // transformIgnorePatterns: ['/node_modules/'],
+  collectCoverageFrom: ["src/**/*.{js,vue}", "!src/main.js", "!**/node_modules/**"]
 }
