@@ -72,3 +72,68 @@ module.exports = {
   ]
 };
 ```
+
+# 配置 enzyme
+` enzyme `是用来测试` react `组件中的状态等情况的工具
+
+```bash
+npm i enzyme enzyme-adapter-react-16 -D
+```
+
+引入` enzyme `
+```js
+import React from 'react';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
+```
+
+## shallow
+浅渲染,只渲染当前组件,子组件用占位符占位,并不会深度渲染,节省时间
+```js
+import Enzyme, { shallow } from 'enzyme';
+import App from './App';
+
+it('test', () => {
+  const wrapper = shallow( <App />);
+  // console.log(wrapper.debug());
+  expect(wrapper.find('.App').length).toBe(1);
+  expect(wrapper.find('.App').prop('title')).toBe('cumelmell');
+});
+```
+
+## debug
+可是使用` wrapper `下的` debug `方法来获取到渲染后的` dom `节点.
+```js
+const wrapper = shallow(<App />);
+console.log(wrapper.debug());
+```
+
+## 测试代码解耦
+使用属性选择器来解耦代码,比直接使用` className `等选择器要好,当选择器变动时,测试代码不需要要改动
+```jsx
+(
+  <div className="App" data-test="App">
+  </div>
+)
+```
+```js
+it('test', () => {
+  const wrapper = shallow(<App />);
+  expect(wrapper.find('[data-test="App"]').length).toBe(1);
+});
+```
+
+## jest-enzyme
+使用` enzyme `的第三方插件提供的方法可以更高效的来进行单元测试
+```bash
+npm i jest-enzyme -D
+```
+随后配置` jest.config.js `中的` setupFilesAfterEnv `,添加上` './node_modules/jest-enzyme/lib/index.js `
+
+## mount
+如果使用` mount `的话,在集成测试中比较适合,会将子组件也挂载
+
+## toMatchSnapshot
+对内容进行快照对比
