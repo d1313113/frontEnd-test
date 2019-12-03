@@ -2,6 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Header from '../../components/Header';
 
+it('Header 渲染样式正常', () => {
+  const wrapper = shallow(<Header />);
+  expect(wrapper).toMatchSnapshot();
+});
+
 it('Header 组件包含一个 input 框', () => {
   const wrapper = shallow(<Header />);
   const inputEle = wrapper.find('[data-test="input"]');
