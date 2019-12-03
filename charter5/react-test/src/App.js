@@ -1,20 +1,11 @@
 import React from 'react';
+import TodoList from './containers/TodoList/index';
 
 function App() {
   return (
     <div className="App" title="cumelmell" data-test="App">
       <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <TodoList />
       </header>
     </div>
   );

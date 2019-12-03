@@ -137,3 +137,18 @@ npm i jest-enzyme -D
 
 ## toMatchSnapshot
 对内容进行快照对比
+
+## 触发事件
+```js
+inputEle.simulate('change', {
+  target: {
+    value: userInput
+  }
+});
+```
+
+## 获取state及prop属性
+```js
+wrapper.prop('value');
+wrapper.state('value');
+```
