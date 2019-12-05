@@ -3,7 +3,7 @@ import '../style.css';
 
 class UndoList extends Component {
   render() {
-    const { list, deleteItem } = this.props;
+    const { list, deleteItem, changeStatus, handleBlur, valueChange } = this.props;
     return (
       <div className="undo-list">
         <div className="undo-list-title">
@@ -16,13 +16,27 @@ class UndoList extends Component {
               <li
                 className="undo-list-item"
                 data-test="list-item"
-                key={ `${item}-${index}` }
+                key={ index }
+                onClick={ () => { changeStatus(index) } }
               >
-                { item }
+                {
+                  item.status === 'div' ? item.value : (
+                    <input
+                      type="text"
+                      data-test="list-input"
+                      value={ item.value }
+                      onBlur={ () => { handleBlur(index) } }
+                      onChange={ (e) => { valueChange(index, e.target.value) } }
+                    />
+                  )
+                }
                 <div
-                className="undo-list-delete"
+                  className="undo-list-delete"
                   data-test="delete-item"
-                  onClick={ () => { deleteItem(index) } }
+                  onClick={ (e) => {
+                    e && e.stopPropagation();
+                    deleteItem(index);
+                  } }
                 >-</div>
               </li>
             )
