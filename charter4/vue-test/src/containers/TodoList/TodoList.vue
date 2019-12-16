@@ -15,6 +15,7 @@
 <script>
 import Header from './components/Header'
 import UndoList from './components/UndoList'
+import axios from 'axios'
 
 export default {
   name: 'TodoList',
@@ -51,7 +52,19 @@ export default {
     },
     changeItemValue (obj) {
       this.undoList[obj.index].value = obj.value
+    },
+    fetchData () {
+      axios
+        .get('/getUndolist.json').then(res => {
+          this.undoList = res.data
+        })
+        .catch(err => console.log(err))
     }
+  },
+  mounted () {
+    setTimeout(() => {
+      this.fetchData()
+    }, 5000)
   }
 }
 </script>

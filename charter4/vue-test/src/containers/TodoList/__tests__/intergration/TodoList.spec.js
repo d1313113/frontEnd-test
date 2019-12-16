@@ -3,6 +3,10 @@ import { findTestWrapper } from '../../../../utils/testUtils';
 import TodoList from '../../TodoList';
 import store from '../../../../store';
 
+beforeEach(() => {
+  jest.useFakeTimers();
+})
+
 it(`
   1.用户会在 header 输入框输入内容
   2.用户会点击回车按钮
@@ -22,4 +26,19 @@ it(`
   expect(listItems.length).toBe(2);
   expect(listItems.at(0).text()).toContain(content);
   expect(listItems.at(1).text()).toContain(content);
+});
+
+it(`
+  1. 用户进入页面时,等待5秒请求远程数据
+  2. 列表应该展示远程返回的数据
+`, (done) => {
+  const wrapper = mount(TodoList, { store });
+
+  expect(setTimeout).toHaveBeenCalledTimes(1);
+  jest.runAllTimers();
+  wrapper.vm.$nextTick(() => {
+    const listItems = findTestWrapper(wrapper, 'item');
+    expect(listItems.length).toBe(2);
+    done();
+  });
 });
