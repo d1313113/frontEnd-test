@@ -2,11 +2,13 @@
   <div class="header">
     <div class="header-content">
       <input type="text" data-test="input" v-model="inputValue" @keyup.enter="addTodoItem">
+      <input type="text" data-test="input1" :value="inputValueVuex" @input="e => changeInputValue(e.target.value)" @keyup.enter="addTodoItem">
     </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'Header',
   data () {
@@ -14,13 +16,22 @@ export default {
       inputValue: ''
     }
   },
+  computed: {
+    ...mapState({
+      inputValueVuex: state => state.inputValueVuex
+    })
+  },
   methods: {
     addTodoItem () {
-      if (this.inputValue) {
-        this.$emit('add', this.inputValue)
+      if (this.inputValue || this.inputValueVuex) {
+        this.$emit('add', this.inputValue || this.inputValueVuex)
         this.inputValue = ''
+        this.changeInputValue('')
       }
-    }
+    },
+    ...mapMutations({
+      changeInputValue: 'changeInputValue'
+    })
   }
 }
 </script>
